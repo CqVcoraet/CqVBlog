@@ -1,0 +1,114 @@
+:root {
+    --background-color: #010f1b;
+    --nav-background-color: #033d70;
+    --top-bar-bg: #021f38;
+    --text-color: #FFFFFF;
+    --accent-color: #05B9FA;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 24px;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px;
+    background-color: var(--top-bar-bg);
+    border-radius: 50rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.nav-bar {
+    list-style-type: none;
+    margin: 0;
+    padding: 12px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    background-color: var(--nav-background-color);
+    border-radius: 50rem;
+    width: fit-content;
+}
+
+.nav-item {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-item.active .nav-link {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    color: var(--text-color);
+}
+
+.nav-link {
+    display: inline-block;
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 50rem;
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    transform: scale(1);
+    background: transparent;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.nav-link:active {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.create-bar {
+    list-style-type: none;
+    margin-left: auto;
+    padding: 12px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background-color: var(--accent-color);
+    border-radius: 50rem;
+    width: fit-content;
+    min-height: 48px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.create-post {
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--text-color);
+    background: var(--accent-color);
+    display: flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 50rem;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.create-bar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.create-bar:active {
+    transform: scale(1.08);
+}
