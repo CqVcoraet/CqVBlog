@@ -1,10 +1,15 @@
 // Imported Packages
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
 import java.util.Queue;
 
 public class SQLTester extends AbstractTester {
@@ -39,6 +44,20 @@ public class SQLTester extends AbstractTester {
         return DriverManager.getConnection(jdbcUrl);
     }
 
+    /**
+     * Sends an HTTP GET request to the Firestore endpoint and returns the response.
+     */
+    private HttpResponse<String> getFirebaseConnection() throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://firestore.googleapis.com/v1/projects/cqvblog/databases/(default)/documents"))
+                .timeout(Duration.ofSeconds(10))
+                .GET()
+                .build();
+
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
     public static void main(String[] args) {
         SQLTester tester = new SQLTester(true, false, 100, "posts.db");
         tester.runTests();
@@ -46,6 +65,7 @@ public class SQLTester extends AbstractTester {
 
     private void runTests() {
         printTest("testConnection()", testConnection());
+        printTest("testFirebaseConnection()", testFirebaseConnection());
         printTest("testTableExists()", testTableExists());
         printTest("testTotalRecordCount()", testTotalRecordCount());
         printTest("showFullTable()", showFullTable());
@@ -64,8 +84,28 @@ public class SQLTester extends AbstractTester {
             Connection conn = getConnection();
             return true;
         } catch (SQLException e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         } catch (Exception e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
+            return false;
+        }
+    }
+
+    private boolean testFirebaseConnection() {
+        try {
+            HttpResponse<String> response = getFirebaseConnection();
+            int status = response.statusCode();
+            // Status code in 2xx, 3xx or 4xx range indicates that the endpoint is reachable and responded
+            return status >= 200 && status < 500;
+        } catch (Exception e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         }
     }
@@ -76,9 +116,14 @@ public class SQLTester extends AbstractTester {
             executeSQL(sql);
             return true;
         } catch (SQLException e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         } catch (Exception e) {
-            System.err.println(ERRORPRINT + e.getMessage() + RESET);
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         }
     }
@@ -93,8 +138,14 @@ public class SQLTester extends AbstractTester {
             }
             return false;
         } catch (SQLException e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         } catch (Exception e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         }
     }
@@ -129,8 +180,14 @@ public class SQLTester extends AbstractTester {
             }
             return hasRows;
         } catch (SQLException e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         } catch (Exception e) {
+            System.out.print(ERRORPRINT);
+            e.printStackTrace();
+            System.out.print(RESET);
             return false;
         }
     }

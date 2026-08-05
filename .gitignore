@@ -1,0 +1,6 @@
+# .gitignore
+serviceAccountKey.json
+.idea/
+node_modules/
+.vscode/
+out/

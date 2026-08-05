@@ -1,5 +1,5 @@
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('pg');
 const path = require('path');
 
 const app = express();
@@ -9,6 +9,10 @@ app.use(express.json());
 
 const databasePath = path.join(__dirname, 'posts.db');
 const database = new sqlite3.Database(databasePath);
+
+const pool = new Pool({
+  host: ''
+});
 
 function initializeDatabase() {
   database.run(`
