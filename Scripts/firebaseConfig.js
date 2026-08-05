@@ -3,7 +3,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebas
 
 // Replace these placeholders with the actual values from your Firebase console
 const firebaseConfig = {
-    apiKey: "AIzaSyBhPMKn22jvaVrEvoxRDC_ZKaIa3nDFpg4",
+    apiKey: "X",
     authDomain: "cqvblog.firebaseapp.com",
     projectId: "cqvblog",
     storageBucket: "cqvblog.firebasestorage.app",
