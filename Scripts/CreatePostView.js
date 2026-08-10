@@ -1,8 +1,5 @@
 "use strict"
 
-import { database } from "./firebaseConfig.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
 const Category = Object.freeze({
     PERSONAL_DEVELOPMENT: 'Personal Development',
     SCIENCE: 'Science',
@@ -18,36 +15,6 @@ const Category = Object.freeze({
     OFF_TOPIC: 'Off Topic',
     OTHER: 'Other'
 });
-
-function successAlert(message) {
-    let alert = new CustomAlert(message, "#007722", "#FFFFFF", "#FFFFFF", "#007722", 
-        {
-            label: "OK",
-            callback: () => {}
-        }
-    );
-    alert.renderAlert();
-}
-
-function warnAlert(message) {
-    let alert = new CustomAlert(message, "#FFC900", "#000000", "#000000", "#FFC900", 
-        {
-            label: "OK",
-            callback: () => {}
-        }
-    );
-    alert.renderAlert();
-}
-
-function errorAlert(message) {
-    let alert = new CustomAlert(message, "#D20000", "#FFFFFF", "#FFFFFF", "#D20000", 
-        {
-            label: "OK",
-            callback: () => {}
-        }
-    );
-    alert.renderAlert();
-}
 
 class CreatePostView {
 
@@ -304,26 +271,54 @@ class CreatePostView {
                 return;
             }
 
-            const createdPost = {
-                title: titleValue,
-                content: contentValue,
-                category: categoryValue,
-                topic: topicValue,
-                date: new Date().toISOString()
-            };
+            const createdPost = new Post(titleValue, contentValue, categoryValue, topicValue);
 
-            // Add post to firestore
-            addDoc(collection(database, "posts"), createdPost)
-                .then((docRef) => {
-                    console.log("Document written with ID: ", docRef.id);
-                    successAlert("Successfully added post")
-                    
-                })
-                .catch((error) => {
-                    console.error("Error adding document: ", error);
-                    errorAlert("Failed to add post")
-                });
-            
+            fetch("http://127.0.0.1:3000/posts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(createdPost)
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Unable to save post.");
+                }
+
+                return response.json();
+            })
+            .then(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+
+                const successAlert = new CustomAlert(
+                    "Post created successfully!",
+                    "#007722",
+                    "#FFFFFF",
+                    "#FFFFFF",
+                    "#007722",
+                    {
+                        label: "OK",
+                        callback: () => {}
+                    }
+                );
+                successAlert.renderAlert();
+            })
+            .catch(() => {
+                const errorAlert = new CustomAlert(
+                    "Could not save post. Make sure the local server is running.",
+                    "#D20000",
+                    "#FFFFFF",
+                    "#FFFFFF",
+                    "#D20000",
+                    {
+                        label: "OK",
+                        callback: () => {}
+                    }
+                );
+                errorAlert.renderAlert();
+            });
         });
 
         buttonRow.append(cancelBtn, submitBtn);
@@ -333,6 +328,3 @@ class CreatePostView {
         document.body.appendChild(overlay);
     }
 }
-
-window.CreatePostView = CreatePostView;
-window.Category = Category;
