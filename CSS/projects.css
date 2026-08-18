@@ -1,8 +1,30 @@
 :root {
-    --background-color: #111111;
-    --nav-background-color: #333333;
+    --background-color: #01080f;
+    --nav-background-color: #033d70;
+    --top-bar-bg: #021f38;
+    --top-bar-bg2: #010f1b;
     --text-color: #FFFFFF;
     --accent-color: #05B9FA;
+    --create-btn-color: #05DBFC;
+    --projects-page-background-overlay: #03213b;
+}
+
+.projects-page {
+    list-style-type: none;
+    margin: 24px 0 0;
+    padding: 24px;
+    display: block;
+    background-color: var(--projects-page-background-overlay);
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    border-radius: 4rem;
+    width: 100%;
+    min-height: 6720px;
+    box-sizing: border-box;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 body {

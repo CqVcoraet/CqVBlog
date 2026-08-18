@@ -317,6 +317,9 @@ class CreatePostView {
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
                     successAlert("Successfully added post")
+                    if (document.body.contains(overlay)) {
+                        document.body.removeChild(overlay);
+                    }
                     
                 })
                 .catch((error) => {

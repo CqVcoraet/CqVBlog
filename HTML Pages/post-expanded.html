@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <style>
+        body {
+            background-color: var(--background-color);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 24px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--accent-color);
+            color: var(--background-color);
+            padding: 12px 20px;
+            border-radius: 50rem;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 24px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.25s ease, background-color 0.25s ease;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #05DBFC;
+            transform: scale(1.05);
+        }
+
+        .back-button:active {
+            transform: scale(1.1);
+        }
+
+        .expanded-post {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+            background-color: #10406a;
+            font-family: 'Inter', sans-serif;
+            border-radius: 3rem;
+            box-shadow: 0 8px 32px rgba(5, 185, 250, 0.2);
+        }
+
+        .post-title {
+            background-color: #05B9FA;
+            color: #01080f;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 3rem;
+            font-size: 42px;
+            font-weight: bold;
+        }
+
+        .post-date {
+            background-color: #042745;
+            color: #05DBFC;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            border-radius: 3rem;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .post-meta {
+            background-color: #04547f;
+            color: #FFFFFF;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            border-radius: 3rem;
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .post-meta strong {
+            color: #05DBFC;
+        }
+
+        .post-content {
+            background-color: #021f38;
+            color: #FFFFFF;
+            padding: 28px;
+            border-radius: 3rem;
+            line-height: 1.8;
+            font-size: 18px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+    <title>CqVBlog - Post</title>
+</head>
+<body>
+    <button class="back-button" onclick="history.back()">← Back to Blog</button>
+    
+    <div class="expanded-post" id="postContainer">
+        <!-- Post content will be loaded here -->
+    </div>
+
+    <script>
+        function formatDate(dateStr) {
+            const dateObj = new Date(dateStr);
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const year = dateObj.getFullYear();
+            return `${month}/${day}/${year}`;
+        }
+
+        function loadPost() {
+            const postData = JSON.parse(sessionStorage.getItem('expandedPost'));
+            
+            if (!postData) {
+                document.getElementById('postContainer').innerHTML = '<p>Post not found</p>';
+                return;
+            }
+
+            const postContainer = document.getElementById('postContainer');
+            postContainer.innerHTML = `
+                <div class="post-title">${postData.title}</div>
+                <div class="post-date">Published: ${formatDate(postData.date)}</div>
+                <div class="post-meta">
+                    <span><strong>Category:</strong> ${postData.category}</span>
+                    <span><strong>Topic:</strong> ${postData.topic}</span>
+                </div>
+                <div class="post-content">${postData.content}</div>
+            `;
+        }
+
+        // Load post when page loads
+        document.addEventListener('DOMContentLoaded', loadPost);
+    </script>
+</body>
+</html>
