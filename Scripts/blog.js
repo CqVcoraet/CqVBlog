@@ -15,7 +15,7 @@ let allPosts = [];
 let currentPage = 1;
 
 // Number of posts to display per page (adjust this to show more/fewer posts per page)
-const postsPerPage = 8;
+const postsPerPage = 5;
 
 // Async function to fetch all posts from Firestore database
 async function loadPosts() {
@@ -49,8 +49,17 @@ function displayPage(pageNum) {
   // Update the current page variable
   currentPage = pageNum;
   
-  // Clear all content from the container (removes previous posts and pagination)
+  // Clear all content from the container except the heading (removes previous posts and pagination)
+  // Store and preserve the "Blog" heading
+  const heading = document.createElement("div");
+  heading.textContent = "Blog";
+  heading.style.fontSize = "45px";
+  heading.style.fontWeight = "bold";
+  heading.style.marginBottom = "24px";
+  
+  // Clear container but we'll re-add the heading
   baseContainer.innerHTML = '';
+  baseContainer.appendChild(heading);
   
   // Calculate which posts to show based on the current page number
   // Example: Page 1 shows posts 0-4, Page 2 shows posts 5-9, etc.
@@ -156,8 +165,12 @@ function displayPage(pageNum) {
       paginationDiv.appendChild(nextBtn);
     }
     
-    // Add the pagination controls to the container
-    baseContainer.appendChild(paginationDiv);
+    // Add the pagination controls to the footer instead of the post container
+    const footer = document.querySelector('.blog-footer');
+    if (footer) {
+      footer.innerHTML = '';
+      footer.appendChild(paginationDiv);
+    }
   }
 }
 

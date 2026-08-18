@@ -72,7 +72,19 @@ ul li a:active {
     font-family: 'Inter', sans-serif;
     border-radius: 4rem;
     width: 100%;
-    min-height: 6720px;
+    min-height: 3360px;
+    height: auto;
     box-sizing: border-box;
+    overflow: visible;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 24px 0 0;
+    padding: 0 24px 24px;
+    box-sizing: border-box;
 }
