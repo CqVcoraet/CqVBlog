@@ -5,6 +5,19 @@ const notAvailableYet = new CustomAlert("This feature is not available yet.", "#
     callback: () => {}
 });
 
+const signInButton = document.querySelector("sign-in-btn");
+
+// Custom Alerts
+function warnAlert(message) {
+    let alert = new CustomAlert(message, "#FFC900", "#000000", "#000000", "#FFC900", 
+        {
+            label: "OK",
+            callback: () => {}
+        }
+    );
+    alert.renderAlert();
+}
+
 const initializeCreatePostButton = () => {
     const createPostButton = document.querySelector(".create-post") || document.querySelector(".create-bar");
 
@@ -42,3 +55,7 @@ if (document.readyState === "loading") {
 } else {
     initializeCreatePostButton();
 }
+
+signInButton.addEventListener("click", function() {
+    warnAlert("Sign in is not set up yet. Please try again later.");
+})
