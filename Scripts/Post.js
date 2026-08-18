@@ -96,7 +96,7 @@ class Post {
 
         // Category and Topic div
         let metaDiv = document.createElement("div");
-        metaDiv.style.backgroundColor = "#04547f";
+        metaDiv.style.backgroundColor = "#042745";
         metaDiv.style.color = "#FFFFFF";
         metaDiv.style.padding = "16px";
         metaDiv.style.marginBottom = "16px";
