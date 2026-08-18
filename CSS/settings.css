@@ -3,6 +3,7 @@
     --nav-background-color: #033d70;
     --text-color: #FFFFFF;
     --accent-color: #05B9FA;
+    --options-color: #03468F;
     --settings-page-background-overlay: #03213b;
 }
 
@@ -75,4 +76,107 @@ ul li a:active {
     min-height: 6720px;
     box-sizing: border-box;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 32px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .about-option {
+    display: block;
+    margin: 24px 0 0;
+    padding: 24px;
+    border-radius: 4rem;
+    background-color: var(--options-color);
+    width: 50%;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .about-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-page .settings-options .about-option:active {
+    transform: scale(1.1);
+}
+
+.settings-page .settings-options .change-theme-option {
+    display: block;
+    margin: 24px 0 0;
+    padding: 24px;
+    border-radius: 4rem;
+    background-color: var(--options-color);
+    width: 50%;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .change-theme-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-page .settings-options .change-theme-option:active {
+    transform: scale(1.1);
+}
+
+.settings-page .settings-options .change-font-option {
+    display: block;
+    margin: 24px 0 0;
+    padding: 24px;
+    border-radius: 4rem;
+    background-color: var(--options-color);
+    width: 50%;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .change-font-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-page .settings-options .change-font-option:active {
+    transform: scale(1.1);
+}
+
+.settings-page .settings-options .change-theme-option {
+    display: block;
+    margin: 24px 0 0;
+    padding: 24px;
+    border-radius: 4rem;
+    background-color: var(--options-color);
+    width: 50%;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .change-theme-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-page .settings-options .change-theme-option:active {
+    transform: scale(1.1);
+}
+
+.settings-page .settings-options .change-font-option {
+    display: block;
+    margin: 24px 0 0;
+    padding: 24px;
+    border-radius: 4rem;
+    background-color: var(--options-color);
+    width: 50%;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.settings-page .settings-options .change-font-option:hover {
+    transform: scale(1.05);
+}
+
+.settings-page .settings-options .change-font-option:active {
+    transform: scale(1.1);
 }
