@@ -7,7 +7,11 @@
     --accent-color: #05B9FA;
     --create-btn-color: #05DBFC;
     --sign-in-btn-color: #FFC900;
-    --home-page-background-overlay: #03213b;
+    --bg-overlay: #03213b;
+    --post-container-bg: #10406a;
+    --post-content-bg: #021f38;
+    --post-meta-bg: #042745;
+    --post-accent-text: #05DBFC;
 }
 
 body {
@@ -50,7 +54,7 @@ body {
 
 .nav-item.active .nav-link {
     text-underline-offset: 4px;
-    color: #05DBFC;
+    color: var(--accent-color);
 }
 
 .nav-link {
@@ -144,7 +148,7 @@ body {
     margin: 24px 0 0;
     padding: 24px;
     display: block;
-    background-color: var(--home-page-background-overlay);
+    background-color: var(--bg-overlay);
     font-size: 45px;
     text-align: center;
     font-weight: bold;

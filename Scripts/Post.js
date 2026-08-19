@@ -45,7 +45,7 @@ class Post {
         container.style.maxWidth = "800px";
         container.style.margin = "24px auto";
         container.style.padding = "24px";
-        container.style.backgroundColor = "#10406a";
+        container.style.backgroundColor = "var(--post-container-bg)";
         container.style.fontFamily = "Inter, sans-serif";
         container.style.borderRadius = "3rem";
         container.style.boxShadow = "0 4px 12px rgba(5, 185, 250, 0.1)";
@@ -53,8 +53,8 @@ class Post {
 
         // Title div
         let titleDiv = document.createElement("div");
-        titleDiv.style.backgroundColor = "#05B9FA";
-        titleDiv.style.color = "#01080f";
+        titleDiv.style.backgroundColor = "var(--accent-color)";
+        titleDiv.style.color = "var(--background-color)";
         titleDiv.style.padding = "16px";
         titleDiv.style.marginBottom = "12px";
         titleDiv.style.borderRadius = "3rem";
@@ -84,8 +84,8 @@ class Post {
 
         // Date div
         let dateDiv = document.createElement("div");
-        dateDiv.style.backgroundColor = "#042745";
-        dateDiv.style.color = "#05DBFC";
+        dateDiv.style.backgroundColor = "var(--post-meta-bg)";
+        dateDiv.style.color = "var(--post-accent-text)";
         dateDiv.style.padding = "16px 12px";
         dateDiv.style.marginBottom = "12px";
         dateDiv.style.borderRadius = "3rem";
@@ -96,8 +96,8 @@ class Post {
 
         // Category and Topic div
         let metaDiv = document.createElement("div");
-        metaDiv.style.backgroundColor = "#042745";
-        metaDiv.style.color = "#FFFFFF";
+        metaDiv.style.backgroundColor = "var(--post-meta-bg)";
+        metaDiv.style.color = "var(--text-color)";
         metaDiv.style.padding = "16px";
         metaDiv.style.marginBottom = "16px";
         metaDiv.style.borderRadius = "3rem";
@@ -107,19 +107,19 @@ class Post {
         metaDiv.style.fontWeight = "500";
 
         let categorySpan = document.createElement("span");
-        categorySpan.innerHTML = "<strong>Category:</strong> " + this.category;
+        categorySpan.innerHTML = "<strong style='color: var(--post-accent-text);'>Category:</strong> " + this.category;
         metaDiv.appendChild(categorySpan);
 
         let topicSpan = document.createElement("span");
-        topicSpan.innerHTML = "<strong>Topic:</strong> " + this.topic;
+        topicSpan.innerHTML = "<strong style='color: var(--post-accent-text);'>Topic:</strong> " + this.topic;
         metaDiv.appendChild(topicSpan);
 
         container.appendChild(metaDiv);
 
         // Content div
         let contentDiv = document.createElement("div");
-        contentDiv.style.backgroundColor = "#021f38";
-        contentDiv.style.color = "#FFFFFF";
+        contentDiv.style.backgroundColor = "var(--post-content-bg)";
+        contentDiv.style.color = "var(--text-color)";
         contentDiv.style.padding = "20px";
         contentDiv.style.borderRadius = "3rem";
         contentDiv.style.lineHeight = "1.6";

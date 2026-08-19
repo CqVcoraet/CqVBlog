@@ -6,7 +6,12 @@
     --text-color: #FFFFFF;
     --accent-color: #05B9FA;
     --create-btn-color: #05DBFC;
-    --contact-page-background-overlay: #03213b;
+    --sign-in-btn-color: #FFC900;
+    --bg-overlay: #03213b;
+    --post-container-bg: #10406a;
+    --post-content-bg: #021f38;
+    --post-meta-bg: #042745;
+    --post-accent-text: #05DBFC;
 }
 
 .contact-page {
@@ -14,7 +19,7 @@
     margin: 24px 0 0;
     padding: 24px;
     display: block;
-    background-color: var(--contact-page-background-overlay);
+    background-color: var(--bg-overlay);
     font-size: 45px;
     text-align: center;
     font-weight: bold;

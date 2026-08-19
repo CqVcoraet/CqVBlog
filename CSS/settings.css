@@ -1,10 +1,17 @@
 :root {
     --background-color: #01080f;
     --nav-background-color: #033d70;
+    --top-bar-bg: #021f38;
+    --top-bar-bg2: #010f1b;
     --text-color: #FFFFFF;
     --accent-color: #05B9FA;
-    --options-color: #03468F;
-    --settings-page-background-overlay: #03213b;
+    --create-btn-color: #05DBFC;
+    --sign-in-btn-color: #FFC900;
+    --bg-overlay: #03213b;
+    --post-container-bg: #10406a;
+    --post-content-bg: #021f38;
+    --post-meta-bg: #042745;
+    --post-accent-text: #05DBFC;
 }
 
 body {
@@ -65,7 +72,7 @@ ul li a:active {
     margin: 24px 0 0;
     padding: 24px;
     display: block;
-    background-color: var(--settings-page-background-overlay);
+    background-color: var(--bg-overlay);
     font-size: 45px;
     text-align: center;
     font-weight: bold;
@@ -91,7 +98,7 @@ ul li a:active {
     margin: 24px 0 0;
     padding: 24px;
     border-radius: 4rem;
-    background-color: var(--options-color);
+    background-color: var(--nav-background-color);
     width: 50%;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -110,7 +117,7 @@ ul li a:active {
     margin: 24px 0 0;
     padding: 24px;
     border-radius: 4rem;
-    background-color: var(--options-color);
+    background-color: var(--nav-background-color);
     width: 50%;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -129,45 +136,7 @@ ul li a:active {
     margin: 24px 0 0;
     padding: 24px;
     border-radius: 4rem;
-    background-color: var(--options-color);
-    width: 50%;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.settings-page .settings-options .change-font-option:hover {
-    transform: scale(1.05);
-}
-
-.settings-page .settings-options .change-font-option:active {
-    transform: scale(1.1);
-}
-
-.settings-page .settings-options .change-theme-option {
-    display: block;
-    margin: 24px 0 0;
-    padding: 24px;
-    border-radius: 4rem;
-    background-color: var(--options-color);
-    width: 50%;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.settings-page .settings-options .change-theme-option:hover {
-    transform: scale(1.05);
-}
-
-.settings-page .settings-options .change-theme-option:active {
-    transform: scale(1.1);
-}
-
-.settings-page .settings-options .change-font-option {
-    display: block;
-    margin: 24px 0 0;
-    padding: 24px;
-    border-radius: 4rem;
-    background-color: var(--options-color);
+    background-color: var(--nav-background-color);
     width: 50%;
     text-align: center;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
