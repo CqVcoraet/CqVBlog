@@ -29,8 +29,30 @@
         <div class="create-post">Create Post</div>
     </div>
 
-    <div class="contact-page">
-        Contact Us
-    </div>
+    <main class="contact-page">
+        <div class="contact-header">
+            <h1>Contact Us</h1>
+            <p>Have a question or issue? Send a message and I will get back to you.</p>
+        </div>
+
+        <form class="contact-form">
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email" required>
+            </div>
+
+            <div class="form-field">
+                <label for="topic">Topic</label>
+                <input id="topic" name="topic" type="text" placeholder="Enter your topic" required>
+            </div>
+
+            <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Describe your issue" rows="8" required></textarea>
+            </div>
+
+            <button class="contact-submit" type="submit">Send Message</button>
+        </form>
+    </main>
 </body>
 </html>

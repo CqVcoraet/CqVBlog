@@ -161,3 +161,15 @@ body {
     box-sizing: border-box;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+.intro-part {
+    background-color: var(--post-container-bg);
+    width: 75%;
+    border-radius: 4rem;
+    padding: 24px;
+    font-size: 20px;
+    text-align: left;
+    margin: 24px 0 0;
+    font-weight: normal;
+
+}
