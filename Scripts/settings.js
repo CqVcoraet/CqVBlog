@@ -289,3 +289,142 @@ function openThemePicker() {
 }
 
 changeThemeOption.addEventListener("click", openThemePicker);
+
+const changeFontOption = document.querySelector(".change-font-option");
+
+function openFontSelector() {
+    const backgroundColor = getCSSVariable('--background-color');
+    const accentColor = getCSSVariable('--accent-color');
+    const postAccentText = getCSSVariable('--post-accent-text');
+    const textColor = getCSSVariable('--text-color');
+    const navBackgroundColor = getCSSVariable('--nav-background-color');
+
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(1, 8, 15, 0.95)";
+    overlay.style.zIndex = "1000";
+    overlay.style.overflowY = "auto";
+    overlay.style.padding = "24px";
+    overlay.style.boxSizing = "border-box";
+    overlay.style.display = "flex";
+    overlay.style.flexDirection = "column";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+
+    const backButton = document.createElement("button");
+    backButton.textContent = "← Back to Settings";
+    backButton.style.position = "absolute";
+    backButton.style.top = "24px";
+    backButton.style.left = "24px";
+    backButton.style.display = "inline-flex";
+    backButton.style.alignItems = "center";
+    backButton.style.gap = "8px";
+    backButton.style.backgroundColor = accentColor;
+    backButton.style.color = backgroundColor;
+    backButton.style.padding = "12px 20px";
+    backButton.style.borderRadius = "50rem";
+    backButton.style.border = "none";
+    backButton.style.cursor = "pointer";
+    backButton.style.fontWeight = "bold";
+    backButton.style.fontSize = "16px";
+    backButton.style.transition = "transform 0.25s ease, background-color 0.25s ease";
+
+    backButton.addEventListener("mouseenter", function() {
+        backButton.style.backgroundColor = postAccentText;
+        backButton.style.transform = "scale(1.05)";
+    });
+
+    backButton.addEventListener("mouseleave", function() {
+        backButton.style.backgroundColor = accentColor;
+        backButton.style.transform = "scale(1)";
+    });
+
+    backButton.addEventListener("click", function() {
+        overlay.remove();
+    });
+
+    overlay.appendChild(backButton);
+
+    const fontContainer = document.createElement("div");
+    fontContainer.style.display = "grid";
+    fontContainer.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
+    fontContainer.style.gap = "24px";
+    fontContainer.style.maxWidth = "900px";
+    fontContainer.style.width = "100%";
+
+    const fonts = [
+        { name: "Inter", font: window.inter },
+        { name: "Lexend", font: window.lexend },
+        { name: "Google Sans Flex", font: window.googleSansFlex },
+        { name: "System", font: window.systemFont }
+    ];
+
+    fonts.forEach(({ name, font }) => {
+        if (!font) {
+            return;
+        }
+
+        if (font.fontLink) {
+            const fontLink = document.createElement("link");
+            fontLink.rel = "stylesheet";
+            fontLink.href = font.fontLink;
+            fontLink.dataset.fontPreview = name;
+            document.head.appendChild(fontLink);
+        }
+
+        const fontButton = document.createElement("button");
+        fontButton.type = "button";
+        fontButton.style.padding = "32px 24px";
+        fontButton.style.borderRadius = "2rem";
+        fontButton.style.border = `2px solid ${accentColor}`;
+        fontButton.style.cursor = "pointer";
+        fontButton.style.transition = "transform 0.25s ease, box-shadow 0.25s ease";
+        fontButton.style.display = "flex";
+        fontButton.style.flexDirection = "column";
+        fontButton.style.alignItems = "center";
+        fontButton.style.gap = "16px";
+        fontButton.style.backgroundColor = navBackgroundColor;
+
+        const fontPreview = document.createElement("div");
+        fontPreview.textContent = name;
+        fontPreview.style.fontFamily = name === "System"
+            ? "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+            : `"${name}"`;
+        fontPreview.style.color = textColor;
+        fontPreview.style.fontSize = "24px";
+        fontPreview.style.fontWeight = "600";
+        fontPreview.style.textAlign = "center";
+        fontButton.appendChild(fontPreview);
+
+        fontButton.addEventListener("mouseenter", function() {
+            fontButton.style.transform = "scale(1.05)";
+            fontButton.style.boxShadow = `0 0 20px ${accentColor}`;
+        });
+
+        fontButton.addEventListener("mouseleave", function() {
+            fontButton.style.transform = "scale(1)";
+            fontButton.style.boxShadow = "none";
+        });
+
+        fontButton.addEventListener("click", function() {
+            if (!window.applyFont) {
+                return;
+            }
+
+            window.applyFont(font)
+                .then(() => overlay.remove())
+                .catch((error) => console.error("Failed to apply font:", error));
+        });
+
+        fontContainer.appendChild(fontButton);
+    });
+
+    overlay.appendChild(fontContainer);
+    document.body.appendChild(overlay);
+}
+
+changeFontOption.addEventListener("click", openFontSelector);

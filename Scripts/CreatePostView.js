@@ -49,6 +49,10 @@ function errorAlert(message) {
     alert.renderAlert();
 }
 
+function getThemeVariable(variableName, fallback) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim() || fallback;
+}
+
 class CreatePostView {
 
     constructor(title, content, selectedCategory, topic) {
@@ -80,6 +84,13 @@ class CreatePostView {
     renderView() {
         console.log(`Create Post View Rendering`);
 
+        const createPostBg = getThemeVariable("--create-post-bg", "#03468F");
+        const textColor = getThemeVariable("--text-color", "#FFFFFF");
+        const accentColor = getThemeVariable("--accent-color", "#05B9FA");
+        const backgroundColor = getThemeVariable("--background-color", "#01080f");
+        const postContentBg = getThemeVariable("--post-content-bg", "#021f38");
+        const postMetaBg = getThemeVariable("--post-meta-bg", "#042745");
+
         let overlay = document.createElement("div");
         Object.assign(overlay.style, {
             position: "fixed",
@@ -98,7 +109,7 @@ class CreatePostView {
 
         let viewBox = document.createElement("div");
         Object.assign(viewBox.style, {
-            background: "#03468F",
+            background: createPostBg,
             display: "flex",
             flexDirection: "column",
             alignItems: "stretch",
@@ -108,7 +119,7 @@ class CreatePostView {
             fontSize: "22px",
             fontWeight: "bold",
             boxShadow: "0 4px 24px rgba(0, 0, 0, 0.2)",
-            color: "#FFFFFF",
+            color: textColor,
             width: "100%",
             maxWidth: "560px"
         });
@@ -154,9 +165,11 @@ class CreatePostView {
             }
 
             Object.assign(input.style, {
+                background: postContentBg,
+                color: textColor,
                 padding: "12px 14px",
                 borderRadius: "1.5rem",
-                border: "1px solid rgba(255,255,255,0.3)",
+                border: `1px solid ${accentColor}`,
                 fontFamily: "Inter, sans-serif",
                 fontSize: "16px",
                 outline: "none"
@@ -185,9 +198,11 @@ class CreatePostView {
 
         const categorySelect = document.createElement("select");
         Object.assign(categorySelect.style, {
+            background: postMetaBg,
+            color: textColor,
             padding: "12px 14px",
             borderRadius: "0.9rem",
-            border: "1px solid rgba(255,255,255,0.3)",
+            border: `1px solid ${accentColor}`,
             fontFamily: "Inter, sans-serif",
             fontSize: "16px",
             outline: "none"
@@ -218,9 +233,11 @@ class CreatePostView {
         topicInput.type = "text";
         topicInput.placeholder = "Enter topic";
         Object.assign(topicInput.style, {
+            background: postContentBg,
+            color: textColor,
             padding: "12px 14px",
             borderRadius: "1.5rem",
-            border: "1px solid rgba(255,255,255,0.3)",
+            border: `1px solid ${accentColor}`,
             fontFamily: "Inter, sans-serif",
             fontSize: "16px",
             outline: "none"
@@ -242,8 +259,8 @@ class CreatePostView {
             padding: "12px 20px",
             fontSize: "16px",
             fontWeight: "bold",
-            background: "#FFFFFF",
-            color: "#03468F",
+            background: accentColor,
+            color: backgroundColor,
             border: "none",
             borderRadius: "50rem",
             cursor: "pointer",
@@ -258,8 +275,8 @@ class CreatePostView {
             fontSize: "16px",
             fontWeight: "bold",
             background: "transparent",
-            color: "#FFFFFF",
-            border: "1px solid rgba(255,255,255,0.6)",
+            color: textColor,
+            border: `1px solid ${textColor}`,
             borderRadius: "50rem",
             cursor: "pointer",
             transition: "transform 0.2s ease"
