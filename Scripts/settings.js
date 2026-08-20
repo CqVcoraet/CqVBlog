@@ -359,6 +359,7 @@ function openFontSelector() {
     const fonts = [
         { name: "Inter", font: window.inter },
         { name: "Lexend", font: window.lexend },
+        { name: "Aldrich", font: window.aldrich },
         { name: "Google Sans Flex", font: window.googleSansFlex },
         { name: "System", font: window.systemFont }
     ];
@@ -368,7 +369,7 @@ function openFontSelector() {
             return;
         }
 
-        if (font.fontLink) {
+        if (font.fontLink && !document.querySelector(`link[data-font-preview="${name}"]`)) {
             const fontLink = document.createElement("link");
             fontLink.rel = "stylesheet";
             fontLink.href = font.fontLink;
@@ -390,10 +391,10 @@ function openFontSelector() {
         fontButton.style.backgroundColor = navBackgroundColor;
 
         const fontPreview = document.createElement("div");
-        fontPreview.textContent = name;
-        fontPreview.style.fontFamily = name === "System"
+        fontPreview.textContent = font.fontName;
+        fontPreview.style.fontFamily = font.fontName.toLowerCase() === "system"
             ? "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
-            : `"${name}"`;
+            : `"${font.fontName}"`;
         fontPreview.style.color = textColor;
         fontPreview.style.fontSize = "24px";
         fontPreview.style.fontWeight = "600";
